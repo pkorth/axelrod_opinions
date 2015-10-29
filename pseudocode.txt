@@ -33,7 +33,7 @@ max_nearby_distance                           ; The furthest away a 'nearby' int
 nearby_interaction_proportion                 ; Proportion of agents to interact with nearby agents
 
 use_meetings                                  ; Should agents attend town hall meetings?
-meeting_interaction_interval                  ; Agents interact with nearby agents every x ticks
+meeting_interaction_interval                  ; A town hall meeting occurs every x ticks
 meeting_radius                                ; Radius used to determine participants in a meeting
 
 use_media_sources                             ; Should agents interact with the media?
