@@ -24,10 +24,6 @@ minimum_similarity                            ; Minimum similarity needed to int
 use_neighbor_interactions                     ; Should agents interact with neighboring agents?
 neighbor_interaction_proportion               ; Proportion of agents to interact with neighbors
 
-use_nearby_interactions                       ; Should agents interact with nearby agents?
-max_nearby_distance                           ; The furthest away a 'nearby' interaction will occur
-nearby_interaction_proportion                 ; Proportion of agents to interact with nearby agents
-
 use_meetings                                  ; Should agents attend town hall meetings?
 meeting_interaction_interval                  ; A town hall meeting occurs every x ticks
 meeting_radius                                ; Radius used to determine participants in a meeting
@@ -90,9 +86,6 @@ function simulate() {
   if (use_neighbor_interactions) {
     simulateNeighborInterations()
   }
-  if (use_nearby_interactions) {
-    simulateNearbyInteractions()
-  }
 
   ; Media and meeting interactions happen once every x number of ticks
   if (use_media_sources and currentTick() mod media_interaction_interval == 0) {
@@ -119,18 +112,6 @@ function simulateNeighborInterations() {
   for (i = 0 to interaction_count) {
     agent = chooseRandomAgent()
     neighbor = chooseRandomNeighborOf(agent)
-    interactWithCulture(agent, neighbor.culture)
-  }
-}
-
-; For some number of agents, choose a random agent and have it
-; interact with a random nearby (not necessarily touching) agent.
-function simulateNearbyInteractions() {
-  interaction_count = numberOfAgents() * nearby_interaction_proportion
-  
-  for (i = 0 to interaction_count) {
-    agent = chooseRandomAgent()
-    neighbor = chooseRandomNearbyOf(agent, max_nearby_distance)
     interactWithCulture(agent, neighbor.culture)
   }
 }
